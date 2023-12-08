@@ -1,0 +1,70 @@
+/*
+** EPITECH PROJECT, 2022
+** B-YEP-400-PAR-4-1-zappy-guillaume.clement-bonniel-veyron
+** File description:
+** main.cpp
+*/
+
+#include "Menu.hpp"
+#include "render.hpp"
+#include "Player.hpp"
+#include "Enemies.hpp"
+#include "Level.hpp"
+#include "Items.hpp"
+
+#include <cstdlib>
+#include <thread>
+
+#define MAX_COLUMNS 20
+
+Camera createCamera(void)
+{
+    Camera camera = { 0 };
+    camera.position = (Vector3){ 0, 0, 0};              // Camera position
+    camera.target = (Vector3){ 0.0f, 2.0f, 0.0f };      // Camera looking at point
+    camera.up = (Vector3){ 0.0f, 1.0f, 0.0f };          // Camera up vector (rotation towards target)
+    camera.fovy = 70.0f;                                // Camera field-of-view Y
+    camera.projection = CAMERA_PERSPECTIVE;             // Camera projection type
+
+    return camera;
+}
+
+Level init_world()
+{
+    Level level;
+
+    return level;
+}
+
+int main()
+{
+    const int screenWidth = 1600;
+    const int screenHeight = 1000;
+
+    InitWindow(screenWidth, screenHeight, "Game");
+    SetTargetFPS(60);
+
+    //DisableCursor();
+    Camera camera = createCamera();
+
+    camera.projection == CAMERA_ORTHOGRAPHIC;
+
+
+    // Main game loop
+    while (!WindowShouldClose())
+    {
+        // Updates
+
+        BeginDrawing();
+            ClearBackground(RAYWHITE);
+            BeginMode3D(camera);
+
+            EndMode3D();
+
+        EndDrawing();
+    }
+
+    CloseWindow();
+
+    return EXIT_SUCCESS;
+}
