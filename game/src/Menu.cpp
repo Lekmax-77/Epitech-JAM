@@ -53,7 +53,7 @@ void Menu::loop()
             static_cast<float>(720 + GetMouseX() * COEF * 2),
             static_cast<float>(300 + GetMouseY() * COEF * 2)
         };
-    
+
         if (IsKeyPressed(KEY_ESCAPE) || (
             IsMouseButtonPressed(MOUSE_LEFT_BUTTON) &&
             CheckCollisionPointRec(

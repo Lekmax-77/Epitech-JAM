@@ -13,7 +13,7 @@ Player::Player()
     _position = {0, 1.0f, 0};
     _speed = 0.2f;
     _angle = 0;
-    _corruption = 0;
+    _hp = 0;
 }
 
 Player::~Player()
@@ -72,10 +72,10 @@ void Player::drawUI(Camera camera)
 void Player::drawModel()
 {
     // Temporary : Draw a cube for the player
-    // The more closer the the _maxCorruption, the darker the color
-    unsigned char r = (_isInvincible) ? 255 : 255 - _corruption * 2.55;
-    unsigned char g = (_isInvincible) ?  50 : 255 - _corruption * 2.55;
-    unsigned char b = (_isInvincible) ?  50 : 255 - _corruption * 2.55;
+    // The more closer the the _maxHp, the darker the color
+    unsigned char r = (_isInvincible) ? 255 : 255 - _hp * 2.55;
+    unsigned char g = (_isInvincible) ?  50 : 255 - _hp * 2.55;
+    unsigned char b = (_isInvincible) ?  50 : 255 - _hp * 2.55;
     _color = (Color){r, g, b, _alpha};
 
     DrawCube(_position, 1, 1, 1, _color);
@@ -99,18 +99,18 @@ void Player::takeDamage(int damage)
             _alpha = 255;
         });
         t1.detach();
-        if (_corruption + damage > _maxCorruption)
-            _corruption = 100;
+        if (_hp + damage > _maxHp)
+            _hp = 100;
         else {
-            _corruption += damage;
+            _hp += damage;
         }
     }
 }
 
 void Player::heal(int damage)
 {
-    if (_corruption - damage < 0)
-        _corruption = 0;
+    if (_hp - damage < 0)
+        _hp = 0;
     else
-        _corruption -= damage;
+        _hp -= damage;
 }

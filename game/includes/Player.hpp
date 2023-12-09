@@ -30,11 +30,11 @@ public:
     float getAngle() const { return _angle; }
     void setAngle(float angle) { _angle = angle; }
 
-    int getCorruption() const { return _corruption; }
-    void setCorruption(int corruption) { _corruption = corruption; }
+    int getHp() const { return _hp; }
+    void setHp(int Hp) { _hp = Hp; }
 
-    int getMaxCorruption() const { return _maxCorruption; }
-    void setMaxCorruption(int maxCorruption) { _maxCorruption = maxCorruption; }
+    int getMaxHp() const { return _maxHp; }
+    void setMaxHp(int maxHp) { _maxHp = maxHp; }
 
     void takeDamage(int damage);
     void heal(int health);
@@ -56,8 +56,8 @@ private:
 
     Color _color;
     unsigned char _alpha;
-    int _maxCorruption;
-    int _corruption;
+    int _maxHp;
+    int _hp;
     int _damage;
     float _knockback;
 };

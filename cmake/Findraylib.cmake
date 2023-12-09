@@ -3,7 +3,7 @@ if (NOT raylib_FOUND) # If there's none, fetch and build raylib
     include(FetchContent)
     FetchContent_Declare(
             raylib
-            URL https://github.com/raysan5/raylib/archive/refs/tags/4.5.0.tar.gz
+            URL https://github.com/raysan5/raylib/archive/refs/tags/5.0.tar.gz
     )
     FetchContent_GetProperties(raylib)
     if (NOT raylib_POPULATED) # Have we downloaded raylib yet?
