@@ -9,7 +9,6 @@
 
 #include "render.hpp"
 #include "Enemies.hpp"
-#include "Items.hpp"
 
 class Player {
 public:
@@ -47,8 +46,6 @@ public:
     void setKnockback(float knockback) { _knockback = knockback; }
 
     bool getIsInvincible() const { return _isInvincible; }
-
-    void pickUpItem(Item item);
 
 private:
     Vector3 _position;

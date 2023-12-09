@@ -9,7 +9,6 @@
 
 #include "Enemies.hpp"
 #include "Player.hpp"
-#include "Items.hpp"
 
 #include "render.hpp"
 #include <cstddef>
@@ -41,12 +40,6 @@ class Level {
         std::vector<Wall> getWalls() { return _walls; }
         void drawWalls();
 
-        void addItem(Item item) { _items.push_back(item); }
-        void removeItem(int index) { _items.erase(_items.begin() + index); }
-        std::vector<Item> getItems() { return _items; }
-        void animateItems();
-        void drawItems();
-
         bool checkCollisions(Player player);
         int checkHit(Player player);
 
@@ -59,7 +52,6 @@ class Level {
         int _id;
         std::vector<Enemy> _enemies;
         std::vector<Wall> _walls;
-        std::vector<Item> _items;
 };
 
 Level proceduralGeometry(void);

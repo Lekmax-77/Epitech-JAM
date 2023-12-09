@@ -13,10 +13,10 @@ using std::string;
 Button::Button(
     const string &text,
     Vector2 position,
-    Vector2 size, 
+    Vector2 size,
     Color color_pressed,
     Color color_release,
-    Color text_color, 
+    Color text_color,
     int font_size
 )
     : position(position),

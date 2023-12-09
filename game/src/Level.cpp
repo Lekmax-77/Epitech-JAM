@@ -37,18 +37,6 @@ void Level::drawWalls()
         DrawCubeV(_walls[i].position, _walls[i].size, BLACK);
 }
 
-void Level::animateItems()
-{
-    for (size_t i = 0; i < _items.size(); i++)
-        _items[i].animate();
-}
-
-void Level::drawItems()
-{
-    for (size_t i = 0; i < _items.size(); i++)
-        _items[i].drawModel();
-}
-
 bool Level::checkCollisions(Player player)
 {
     for (size_t i = 0; i < _walls.size(); i++) {
@@ -71,16 +59,4 @@ int Level::checkHit(Player player)
         }
     }
     return -1;
-}
-
-void Level::checkItemCollisions(Player *player)
-{
-    for (size_t i = 0; i < _items.size(); i++) {
-        if (CheckCollisionBoxes((BoundingBox){(Vector3){player->getPosition().x - 0.5f, player->getPosition().y - 0.5f, player->getPosition().z - 0.5f}, (Vector3){player->getPosition().x + 0.5f, player->getPosition().y + 0.5f, player->getPosition().z + 0.5f}},
-                                (BoundingBox){(Vector3){_items[i].getPosition().x - _items[i].getSize() / 2, _items[i].getPosition().y - _items[i].getSize() / 2, _items[i].getPosition().z - _items[i].getSize() / 2}, (Vector3){_items[i].getPosition().x + _items[i].getSize() / 2, _items[i].getPosition().y + _items[i].getSize() / 2, _items[i].getPosition().z + _items[i].getSize() / 2}}
-                                )) {
-            player->pickUpItem(_items[i]);
-            _items.erase(_items.begin() + i);
-        }
-    }
 }

@@ -10,7 +10,6 @@
 #include "Player.hpp"
 #include "Enemies.hpp"
 #include "Level.hpp"
-#include "Items.hpp"
 
 #include <cstdlib>
 #include <thread>

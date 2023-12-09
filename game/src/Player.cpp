@@ -13,13 +13,7 @@ Player::Player()
     _position = {0, 1.0f, 0};
     _speed = 0.2f;
     _angle = 0;
-    _maxCorruption = 100;
     _corruption = 0;
-    _color = (Color){255, 255, 255, 255};
-    _isInvincible = false;
-
-    _damage = 5;
-    _knockback = 0.7f;
 }
 
 Player::~Player()
@@ -43,11 +37,6 @@ void Player::update()
     if (IsKeyDown(KEY_D)) {
         _position.z += _speed / 2;
         _position.x -= _speed / 2;
-    }
-
-    if (_corruption >= _maxCorruption) {
-        _corruption = _maxCorruption;
-        // TODO: Game over
     }
 
 }
@@ -75,37 +64,9 @@ std::vector<Enemy> Player::attack(std::vector<Enemy> enemies)
     return enemies;
 }
 
-void Player::pickUpItem(Item item)
-{
-    std::cout << "Picked up item" << std::endl;
-    _damage += item.getDamage();
-    //_knockback += item.getKnockback();
-    heal(item.getHealth());
-    _speed += item.getSpeed();
-}
-
 void Player::drawUI(Camera camera)
 {
-    int x = 20;
-    int y = 80;
-    int width = _maxCorruption * 2;
-    int height = 40;
 
-    int width2 = _corruption * 2;
-
-    DrawText("Corruption", 20, 20, 40, BLACK);
-    // Draw the corruption bar
-    DrawRectangle(x - 3, y - 3, width + 6, height + 6, DARKGRAY);
-    DrawRectangle(x, y, width, height, WHITE);
-    DrawRectangle(x, y, width2, height, BLACK);
-
-    // Draw the speed, damage and knockback
-    DrawText("Speed", 20, 140, 40, DARKGRAY);
-    DrawText(std::to_string(_speed).c_str(), 20, 180, 40, DARKGRAY);
-    DrawText("Damage", 20, 240, 40, DARKGRAY);
-    DrawText(std::to_string(_damage).c_str(), 20, 280, 40, DARKGRAY);
-    DrawText("Knockback", 20, 340, 40, DARKGRAY);
-    DrawText(std::to_string(_knockback).c_str(), 20, 380, 40, DARKGRAY);
 }
 
 void Player::drawModel()
