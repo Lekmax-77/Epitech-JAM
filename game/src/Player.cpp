@@ -61,8 +61,8 @@ std::vector<Enemy> Player::attack(std::vector<Enemy> enemies)
 
 void Player::drawUI(Camera camera)
 {
-    int x = 20;
-    int y = 20;
+    int x = 30;
+    int y = 30;
 
     // Draw the player's health bar
     DrawRectangle(x, y, 200, 20, BLACK);
@@ -70,31 +70,31 @@ void Player::drawUI(Camera camera)
     DrawRectangleLines(x, y, 200, 20, WHITE);
 
     // Draw the player's food bar
-    DrawRectangle(x, y + 25, 200, 20, BLACK);
-    DrawRectangle(x, y + 25, _food * 2, 20, GREEN);
+    DrawRectangle(x, y + 50, 200, 20, BLACK);
+    DrawRectangle(x, y + 50, _food * 2, 20, GREEN);
     DrawRectangleLines(x, y + 25, 200, 20, WHITE);
 
     // Draw the player's water bar
-    DrawRectangle(x, y + 50, 200, 20, BLACK);
-    DrawRectangle(x, y + 50, _water * 2, 20, BLUE);
+    DrawRectangle(x, y + 100, 200, 20, BLACK);
+    DrawRectangle(x, y + 100, _water * 2, 20, BLUE);
     DrawRectangleLines(x, y + 50, 200, 20, WHITE);
 
     // Draw the player's stress bar
-    DrawRectangle(x, y + 75, 200, 20, BLACK);
-    DrawRectangle(x, y + 75, _stress * 2, 20, YELLOW);
+    DrawRectangle(x, y + 150, 200, 20, BLACK);
+    DrawRectangle(x, y + 150, _stress * 2, 20, YELLOW);
     DrawRectangleLines(x, y + 75, 200, 20, WHITE);
 
     // Draw the player's toilet bar
-    DrawRectangle(x, y + 100, 200, 20, BLACK);
-    DrawRectangle(x, y + 100, _toilet * 2, 20, BROWN);
+    DrawRectangle(x, y + 200, 200, 20, BLACK);
+    DrawRectangle(x, y + 200, _toilet * 2, 20, BROWN);
     DrawRectangleLines(x, y + 100, 200, 20, WHITE);
 
     // Draw Text
-    DrawText("Health", x, y - 20, 20, WHITE);
-    DrawText("Food", x, y + 5, 20, WHITE);
-    DrawText("Water", x, y + 30, 20, WHITE);
-    DrawText("Stress", x, y + 55, 20, WHITE);
-    DrawText("Toilet", x, y + 80, 20, WHITE);
+    DrawText("Health", x, y - 20, 20, BLACK);
+    DrawText("Food", x, y + 30, 20, BLACK);
+    DrawText("Water", x, y + 80, 20, BLACK);
+    DrawText("Stress", x, y + 130, 20, BLACK);
+    DrawText("Toilet", x, y + 180, 20, BLACK);
 }
 
 void Player::drawModel()
