@@ -13,7 +13,14 @@ Player::Player()
     _position = {0, 1.0f, 0};
     _speed = 0.2f;
     _angle = 0;
-    _hp = 0;
+    _hp = 100;
+    _maxHp = 100;
+    _tick = 0;
+
+    _food = 100;
+    _water = 100;
+    _stress = 0;
+    _toilet = 0;
 }
 
 Player::~Player()
@@ -66,12 +73,12 @@ void Player::drawUI(Camera camera)
 
     // Draw the player's health bar
     DrawRectangle(x, y, 200, 20, WHITE);
-    DrawRectangle(x, y, _hp * 2, 20, RED);
+    DrawRectangle(x, y, _hp * 2, 20, GREEN);
     DrawRectangleLines(x, y, 200, 20, BLACK);
 
     // Draw the player's food bar
     DrawRectangle(x, y + 50, 200, 20, WHITE);
-    DrawRectangle(x, y + 50, _food * 2, 20, GREEN);
+    DrawRectangle(x, y + 50, _food * 2, 20, RED);
     DrawRectangleLines(x, y + 50, 200, 20, BLACK);
 
     // Draw the player's water bar
@@ -81,12 +88,12 @@ void Player::drawUI(Camera camera)
 
     // Draw the player's stress bar
     DrawRectangle(x, y + 150, 200, 20, WHITE);
-    DrawRectangle(x, y + 150, _stress * 2, 20, YELLOW);
+    DrawRectangle(x, y + 150, _stress * 2, 20, BLACK);
     DrawRectangleLines(x, y + 150, 200, 20, BLACK);
 
     // Draw the player's toilet bar
     DrawRectangle(x, y + 200, 200, 20, WHITE);
-    DrawRectangle(x, y + 200, _toilet * 2, 20, BROWN);
+    DrawRectangle(x, y + 200, _toilet * 2, 20, YELLOW);
     DrawRectangleLines(x, y + 200, 200, 20, BLACK);
 
     // Draw Text
@@ -142,3 +149,4 @@ void Player::heal(int damage)
     else
         _hp -= damage;
 }
+

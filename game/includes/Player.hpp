@@ -57,7 +57,14 @@ public:
     void setStress(int stress) { _stress = stress; }
 
     int getToilet() const { return _toilet; }
-    void setToilet(int toilet) { _toilet = toilet; }
+    void setToilet(int toilet) { 
+        std::cout << " new toilet: " << toilet << std::endl;
+        std::cout << " old toilet: " << _toilet << std::endl;
+        _toilet = toilet; 
+        }
+
+    int getTick() const { return _tick; }
+    void setTick(int tick) { _tick = tick; }
 
 private:
     Vector3 _position;
@@ -77,4 +84,7 @@ private:
     int _water;
     int _stress;
     int _toilet;
+    int _tick;
+
+
 };

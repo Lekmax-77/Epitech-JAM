@@ -35,6 +35,33 @@ Level init_world()
     return level;
 }
 
+
+void updatesState(Player &player)
+{
+    if (GetTime() - player.getTick() >= 1) {
+        player.setTick(GetTime());
+        if (player.getFood() <= 0)
+            player.setHp(player.getHp() - 0.01);
+        else {
+            player.setFood(player.getFood() - 0.01);
+        }
+        if (player.getWater() <= 0)
+            player.setHp(player.getHp() - 0.01);
+        else {
+            player.setWater(player.getWater() - 0.01);
+            if (player.getToilet() >= 100)
+                player.setHp(player.getHp() - 0.01);
+            else
+                player.setToilet(player.getToilet() + 1);
+        }
+
+        if (player.getFood() >= 25 && player.getWater() >= 25 && player.getToilet() <= 95)
+            player.setHp(player.getHp() + 0.01);
+
+    }
+
+}
+
 int main()
 {
     const int screenWidth = 1600;
@@ -71,7 +98,11 @@ int main()
     {
         // Updates
         oldPosition = player.getPosition();
-
+        updatesState(player);
+  
+        // inscre the stress when i work
+        if (player.getHp() <= 0)
+            break;// FAIRE UN  GAME OVER QUAND IL A PLUS DE VIE----------------------------------------------- 
         camera.target = oldPosition;
         camera.position = (Vector3){
             static_cast<float>(player.getPosition().x + 0.5),
