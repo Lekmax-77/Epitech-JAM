@@ -56,7 +56,7 @@ int main()
         oldPosition = player.getPosition();
 
         camera.target = oldPosition;
-        camera.position = (Vector3){player.getPosition().x - 8, player.getPosition().y + 14, player.getPosition().z - 8};
+        camera.position = (Vector3){player.getPosition().x + 0.5, player.getPosition().y + 15, player.getPosition().z};
 
         player.update();
 
@@ -65,6 +65,7 @@ int main()
             BeginMode3D(camera);
 
             player.drawModel();
+            DrawGrid(20, 1.0f);
 
             EndMode3D();
 

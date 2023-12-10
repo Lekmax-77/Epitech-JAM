@@ -23,20 +23,16 @@ Player::~Player()
 void Player::update()
 {
     if (IsKeyDown(KEY_W)) {
-        _position.z += _speed / 2;
-        _position.x += _speed / 2;
+        _position.x -= _speed / 2;
     }
     if (IsKeyDown(KEY_S)) {
-        _position.z -= _speed / 2;
-        _position.x -= _speed / 2;
-    }
-    if (IsKeyDown(KEY_A)) {
-        _position.z -= _speed / 2;
         _position.x += _speed / 2;
     }
-    if (IsKeyDown(KEY_D)) {
+    if (IsKeyDown(KEY_A)) {
         _position.z += _speed / 2;
-        _position.x -= _speed / 2;
+    }
+    if (IsKeyDown(KEY_D)) {
+        _position.z -= _speed / 2;
     }
 
 }
