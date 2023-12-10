@@ -113,10 +113,10 @@ void updatesState(Player &player, Boxes boxes)
 
 void drawBoxWork(Boxes boxes)
 {
-    DrawCube({1, 1, 0}, 1, 1, 2, BLACK);
-    DrawCube({9, 0, 9}, 1, 1, 1, RED);
-    DrawCube({9, 0, -9}, 1, 1, 1, BLUE);
-    DrawCube({-9, 0, 9}, 1, 1, 1, YELLOW);
+    DrawCube({10, 1, -2}, 1, 1, 2, BLACK);
+    DrawCube({19, 0, 8}, 1, 1, 1, RED);
+    DrawCube({1.5, 0, -27}, 1, 1, 1, BLUE);
+    DrawCube({32, 0, -9}, 1, 1, 1, YELLOW);
     DrawCube({-9, 0, -9}, 1, 1, 1, BROWN);
 }
 
@@ -132,10 +132,10 @@ Boxes createBoxes(void)
 {
     Boxes boxes;
 
-    boxes.blackBox = createBoundingBoxForCube({1, 1, 0}, 1, 1, 2);
-    boxes.redBox = createBoundingBoxForCube({9, 0, 9}, 1, 1, 1);
-    boxes.blueBox = createBoundingBoxForCube({9, 0, -9}, 1, 1, 1);
-    boxes.yellowBox = createBoundingBoxForCube({-9, 0, 9}, 1, 1, 1);
+    boxes.blackBox = createBoundingBoxForCube({10, 1, -2}, 1, 1, 2);
+    boxes.redBox = createBoundingBoxForCube({19, 0, 8}, 1, 1, 1);
+    boxes.blueBox = createBoundingBoxForCube({1.5, 0, -27}, 1, 1, 1);
+    boxes.yellowBox = createBoundingBoxForCube({32, 0, -9}, 1, 1, 1);
     boxes.brownBox = createBoundingBoxForCube({-9, 0, -9}, 1, 1, 1);
 
     return boxes;
@@ -156,6 +156,8 @@ int main()
     Level level = generateRoom();
 
     Vector3 oldPosition;
+
+    Texture2D cacaTexture = LoadTexture("assets/textures/CACA.png");
 
     Menu menu;
     menu.loop();
@@ -196,6 +198,9 @@ int main()
 
             EndMode3D();
             player.drawUI(camera);
+            // Draw the position of the player
+            DrawText(TextFormat("x: %f", player.getPosition().x), 50, 130, 20, BLACK);
+            DrawText(TextFormat("z: %f", player.getPosition().z), 50, 150, 20, BLACK);
 
         EndDrawing();
     }
