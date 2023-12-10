@@ -44,6 +44,10 @@ void Menu::loop()
     while (!WindowShouldClose()) {
         //clear black
         ClearBackground(BLACK);
+        Vector2 jo_pos = {
+            static_cast<float>(GetMouseX() * COEF + 355),
+            static_cast<float>(GetMouseY() * COEF + 200)
+        };
         Vector2 background_position = {
             static_cast<float>(GetMouseX() * COEF - 25),
             static_cast<float>(GetMouseY() * COEF - 25)
@@ -90,7 +94,7 @@ void Menu::loop()
 
         DrawTextureEx(_background_texture, background_position, 0, 0.35, WHITE);
 
-        DrawTextureEx(_jo_texture, {350, 200}, -15, 1, WHITE);
+        DrawTextureEx(_jo_texture, jo_pos, -17, 1, WHITE);
         _play_button.draw();
         _quit_button.draw();
         EndDrawing();
