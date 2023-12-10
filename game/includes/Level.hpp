@@ -43,8 +43,6 @@ class Level {
         bool checkCollisions(Player player);
         int checkHit(Player player);
 
-        void checkItemCollisions(Player *player);
-
         Vector3 startPosition;
         Vector3 endPosition;
 

@@ -43,20 +43,28 @@ int main()
     InitWindow(screenWidth, screenHeight, "Game");
     SetTargetFPS(60);
 
-    //DisableCursor();
     Camera camera = createCamera();
-
     camera.projection == CAMERA_ORTHOGRAPHIC;
+    Player player = Player();
 
+    Vector3 oldPosition;
 
     // Main game loop
     while (!WindowShouldClose())
     {
         // Updates
+        oldPosition = player.getPosition();
+
+        camera.target = oldPosition;
+        camera.position = (Vector3){player.getPosition().x - 8, player.getPosition().y + 14, player.getPosition().z - 8};
+
+        player.update();
 
         BeginDrawing();
             ClearBackground(RAYWHITE);
             BeginMode3D(camera);
+
+            player.drawModel();
 
             EndMode3D();
 
