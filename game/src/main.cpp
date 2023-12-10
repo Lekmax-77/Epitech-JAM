@@ -44,7 +44,6 @@ int main()
     SetTargetFPS(60);
 
     Camera camera = createCamera();
-    camera.projection = CAMERA_ORTHOGRAPHIC;
     Player player = Player();
 
     Level level = Level();
@@ -75,10 +74,10 @@ int main()
 
         camera.target = oldPosition;
         camera.position = (Vector3){
-    static_cast<float>(player.getPosition().x + 0.5), 
-    static_cast<float>(player.getPosition().y + 15), 
-    static_cast<float>(player.getPosition().z)
-};
+            static_cast<float>(player.getPosition().x + 0.5),
+            static_cast<float>(player.getPosition().y + 15),
+            static_cast<float>(player.getPosition().z)
+        };
 
         player.update();
         if (level.checkCollisions(player))
