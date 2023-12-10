@@ -139,5 +139,9 @@ Level generateRoom(void)
     Prop water_prop((Vector3){1.5, 0, -27}, (Vector3){1000.0f, 1000.0f, 1000.0f}, water);
     level.addProp(water_prop);
 
+    Model coffee = LoadModel("assets/coffee_machine.glb");
+    Prop coffee_prop((Vector3){19, 0, 8}, (Vector3){100.0f, 100.0f, 100.0f}, coffee);
+    level.addProp(coffee_prop);
+
     return level;
 }
