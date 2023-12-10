@@ -28,8 +28,14 @@ Camera createCamera(void)
     return camera;
 }
 
-void updatesState(Player &player)
+void updatesState(Player &player, Boxes boxes)
 {
+    BoundingBox blackBox = boxes.blackBox;
+    BoundingBox redBox = boxes.redBox;
+    BoundingBox blueBox = boxes.blueBox;
+    BoundingBox yellowBox = boxes.yellowBox;
+    BoundingBox brownBox = boxes.brownBox;
+
     if (GetTime() - player.getTick() >= 1) {
         player.setTick(GetTime());
         if (player.getFood() <= 0)
@@ -52,55 +58,86 @@ void updatesState(Player &player)
             if (player.getHp() <= 98)
                 player.setHp(player.getHp() + 2);
 
-
-        //check if player is in the black box
-        if (player.getPosition().x >= -2 && player.getPosition().x <= 2 && player.getPosition().z >= -2 && player.getPosition().z <= 2)
+        // Check if player is in the black box
+        if (CheckCollisionBoxes(player.getBoundingBox(), blackBox)) {
             if (player.getStress() <= 98)
                 player.setStress(player.getStress() + 2);
             else
                 player.setStress(100);
+        }
 
-        //check if player is in the red box
-        if (player.getPosition().x >= 8 && player.getPosition().x <= 10 && player.getPosition().z >= 8 && player.getPosition().z <= 10)
+        // Check if player is in the red box
+        if (CheckCollisionBoxes(player.getBoundingBox(), redBox)) {
             if (player.getFood() <= 95)
                 player.setFood(player.getFood() + 5);
             else
                 player.setFood(100);
+        }
 
-        //check if player is in the blue box
-        if (player.getPosition().x >= 8 && player.getPosition().x <= 10 && player.getPosition().z >= -10 && player.getPosition().z <= -8)
+        // Check if player is in the blue box
+        if (CheckCollisionBoxes(player.getBoundingBox(), blueBox)) {
             if (player.getWater() <= 95)
                 player.setWater(player.getWater() + 5);
             else
                 player.setWater(100);
+        }
 
-        //check if player is in the yellow box
-        if (player.getPosition().x >= -10 && player.getPosition().x <= -8 && player.getPosition().z >= 8 && player.getPosition().z <= 10)
+        // Check if player is in the yellow box
+        if (CheckCollisionBoxes(player.getBoundingBox(), yellowBox)) {
             if (player.getToilet() >= 5)
                 player.setToilet(player.getToilet() - 5);
             else
                 player.setToilet(0);
 
-        if (player.getPosition().x >= -10 && player.getPosition().x <= -8 && player.getPosition().z >= -10 && player.getPosition().z <= -8)
             if (player.getStress() >= 5)
                 player.setStress(player.getStress() - 5);
             else
                 player.setStress(0);
+        }
 
+        // Check if player is in the brown box
+        if (CheckCollisionBoxes(player.getBoundingBox(), brownBox)) {
+            if (player.getToilet() >= 5)
+                player.setToilet(player.getToilet() - 5);
+            else
+                player.setToilet(0);
+
+            if (player.getStress() >= 5)
+                player.setStress(player.getStress() - 5);
+            else
+                player.setStress(0);
+        }
     }
-
 }
 
-
-void drawBoxWork(Player& player)
+void drawBoxWork(Boxes boxes)
 {
     DrawCube({1, 1, 0}, 1, 1, 2, BLACK);
     DrawCube({9, 0, 9}, 1, 1, 1, RED);
     DrawCube({9, 0, -9}, 1, 1, 1, BLUE);
     DrawCube({-9, 0, 9}, 1, 1, 1, YELLOW);
     DrawCube({-9, 0, -9}, 1, 1, 1, BROWN);
+}
 
+BoundingBox createBoundingBoxForCube(Vector3 position, float width, float height, float length)
+{
+    BoundingBox box;
+    box.min = (Vector3){position.x - width/2, position.y - height/2, position.z - length/2};
+    box.max = (Vector3){position.x + width/2, position.y + height/2, position.z + length/2};
+    return box;
+}
 
+Boxes createBoxes(void)
+{
+    Boxes boxes;
+
+    boxes.blackBox = createBoundingBoxForCube({1, 1, 0}, 1, 1, 2);
+    boxes.redBox = createBoundingBoxForCube({9, 0, 9}, 1, 1, 1);
+    boxes.blueBox = createBoundingBoxForCube({9, 0, -9}, 1, 1, 1);
+    boxes.yellowBox = createBoundingBoxForCube({-9, 0, 9}, 1, 1, 1);
+    boxes.brownBox = createBoundingBoxForCube({-9, 0, -9}, 1, 1, 1);
+
+    return boxes;
 }
 
 int main()
@@ -113,6 +150,7 @@ int main()
 
     Camera camera = createCamera();
     Player player = Player();
+    Boxes boxes = createBoxes();
 
     Level level = generateRoom();
 
@@ -126,7 +164,7 @@ int main()
     {
         // Updates
         oldPosition = player.getPosition();
-        updatesState(player);
+        updatesState(player, boxes);
 
         // inscre the stress when i work
         if (player.getHp() <= 0)
@@ -139,13 +177,16 @@ int main()
         };
 
         player.update();
-        if (level.checkCollisions(player))
-            player.setPosition(oldPosition);
+        // if (level.checkCollisions(player))
+        //     player.setPosition(oldPosition);
+
+        // if (level.checkPropCollisions(player))
+        //     player.setPosition(oldPosition);
 
         BeginDrawing();
             ClearBackground(RAYWHITE);
             BeginMode3D(camera);
-            drawBoxWork(player);
+            drawBoxWork(boxes);
 
             player.drawModel();
 

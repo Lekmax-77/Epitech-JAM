@@ -36,3 +36,11 @@ class Prop {
         Vector3 scale;
         Model model;
 };
+
+struct Boxes {
+    BoundingBox blackBox;
+    BoundingBox redBox;
+    BoundingBox blueBox;
+    BoundingBox yellowBox;
+    BoundingBox brownBox;
+};

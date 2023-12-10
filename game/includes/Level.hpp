@@ -48,6 +48,8 @@ class Level {
         bool checkCollisions(Player player);
         int checkHit(Player player);
 
+        bool checkPropCollisions(Player player);
+
         Vector3 startPosition;
         Vector3 endPosition;
 

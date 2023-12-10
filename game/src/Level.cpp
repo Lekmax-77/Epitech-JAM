@@ -51,6 +51,18 @@ bool Level::checkCollisions(Player player)
     return false;
 }
 
+bool Level::checkPropCollisions(Player player)
+{
+    // for (size_t i = 0; i < _props.size(); i++) {
+    //     if (CheckCollisionBoxes((BoundingBox){(Vector3){player.getPosition().x - 0.5f, player.getPosition().y - 0.5f, player.getPosition().z - 0.5f}, (Vector3){player.getPosition().x + 0.5f, player.getPosition().y + 0.5f, player.getPosition().z + 0.5f}},
+    //                             (BoundingBox){(Vector3){_props[i].position.x - _props[i].scale.x / 2, _props[i].position.y - _props[i].scale.y / 2, _props[i].position.z - _props[i].scale.z / 2}, (Vector3){_props[i].position.x + _props[i].scale.x / 2, _props[i].position.y + _props[i].scale.y / 2, _props[i].position.z + _props[i].scale.z / 2}}
+    //                             )) {
+    //         return true;
+    //     }
+    // }
+    return false;
+}
+
 int Level::checkHit(Player player)
 {
     for (size_t i = 0; i < _enemies.size(); i++) {

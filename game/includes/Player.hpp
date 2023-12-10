@@ -58,11 +58,13 @@ public:
 
     int getToilet() const { return _toilet; }
     void setToilet(int toilet) {
-        _toilet = toilet; 
-        }
+        _toilet = toilet;
+    }
 
     int getTick() const { return _tick; }
     void setTick(int tick) { _tick = tick; }
+
+    BoundingBox getBoundingBox() const { return (BoundingBox){(Vector3){_position.x - 0.5f, _position.y - 0.5f, _position.z - 0.5f}, (Vector3){_position.x + 0.5f, _position.y + 0.5f, _position.z + 0.5f}}; }
 
 private:
     Vector3 _position;
