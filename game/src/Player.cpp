@@ -98,10 +98,10 @@ void Player::drawUI(Camera camera)
 
     // Draw Text
     DrawText("Health", x, y - 20, 20, BLACK);
-    DrawText("Food", x, y + 30, 20, BLACK);
-    DrawText("Water", x, y + 80, 20, BLACK);
+    DrawText("Hunger", x, y + 30, 20, BLACK);
+    DrawText("Thirst", x, y + 80, 20, BLACK);
     DrawText("Stress", x, y + 130, 20, BLACK);
-    DrawText("Toilet", x, y + 180, 20, BLACK);
+    DrawText("Piss", x, y + 180, 20, BLACK);
 }
 
 void Player::drawModel()

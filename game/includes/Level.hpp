@@ -40,6 +40,11 @@ class Level {
         std::vector<Wall> getWalls() { return _walls; }
         void drawWalls();
 
+        void addProp(Prop prop) { _props.push_back(prop); }
+        void removeProp(int index) { _props.erase(_props.begin() + index); }
+        std::vector<Prop> getProps() { return _props; }
+        void drawProps();
+
         bool checkCollisions(Player player);
         int checkHit(Player player);
 
@@ -50,6 +55,7 @@ class Level {
         int _id;
         std::vector<Enemy> _enemies;
         std::vector<Wall> _walls;
+        std::vector<Prop> _props;
 };
 
-Level proceduralGeometry(void);
+Level generateRoom(void);
