@@ -76,20 +76,15 @@ Level generateRoom(void)
     int roomWidth = 20;
     int roomLength = 20;
 
-    // Front and back walls
-    Wall wall1((Vector3){0.0f, 1.5f, (float)roomLength / 2.0f}, (Vector3){(float)roomWidth, 3.0f, 1.0f});
-    level.addWall(wall1);
+    level.addWall(Wall((Vector3){20.0f, 1.5f, 10.0f}, (Vector3){40.0f, 3.0f, 1.0f})); // Left Big
+    level.addWall(Wall((Vector3){0.0f, 1.5f, 0.0f}, (Vector3){1.0f, 3.0f, 20.0f}));
+    level.addWall(Wall((Vector3){40.0f, 1.5f, 0.0f}, (Vector3){1.0f, 3.0f, 20.0f}));
 
-    Wall wall2((Vector3){0.0f, 1.5f, -(float)roomLength / 2.0f}, (Vector3){(float)roomWidth, 3.0f, 1.0f});
-    level.addWall(wall2);
+    level.addWall(Wall((Vector3){30.0f, 1.5f, -10.0f}, (Vector3){20.0f, 3.0f, 1.0f})); // Bottom Right
+    level.addWall(Wall((Vector3){20.0f, 1.5f, -20.0f}, (Vector3){1.0f, 3.0f, 20.0f}));
+    level.addWall(Wall((Vector3){0.0f, 1.5f, -20.0f}, (Vector3){1.0f, 3.0f, 20.0f}));
 
-    // Left and right walls
-    Wall wall3((Vector3){(float)roomWidth / 2.0f, 1.5f, 0.0f}, (Vector3){1.0f, 3.0f, (float)roomLength});
-    level.addWall(wall3);
-
-    Wall wall4((Vector3){-(float)roomWidth / 2.0f, 1.5f, 0.0f}, (Vector3){1.0f, 3.0f, (float)roomLength});
-    level.addWall(wall4);
-
+    level.addWall(Wall((Vector3){10.0f, 1.5f, -30.0f}, (Vector3){20.0f, 3.0f, 1.0f})); // Far Right
 
     // Props
     Model model = LoadModel("assets/models/Office Chair.glb");

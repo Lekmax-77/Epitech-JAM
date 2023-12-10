@@ -10,8 +10,8 @@
 
 Player::Player()
 {
-    _position = {0, 1.0f, 0};
-    _speed = 0.2f;
+    _position = {10.0f, 1.0f, 0};
+    _speed = 0.3f;
     _angle = 0;
     _hp = 100;
     _maxHp = 100;
