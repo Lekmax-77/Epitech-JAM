@@ -28,14 +28,6 @@ Camera createCamera(void)
     return camera;
 }
 
-Level init_world()
-{
-    Level level;
-
-    return level;
-}
-
-
 void updatesState(Player &player)
 {
     if (GetTime() - player.getTick() >= 1) {
@@ -60,14 +52,14 @@ void updatesState(Player &player)
             if (player.getHp() <= 98)
                 player.setHp(player.getHp() + 2);
 
-        
+
         //check if player is in the black box
         if (player.getPosition().x >= -2 && player.getPosition().x <= 2 && player.getPosition().z >= -2 && player.getPosition().z <= 2)
             if (player.getStress() <= 98)
                 player.setStress(player.getStress() + 2);
             else
                 player.setStress(100);
-        
+
         //check if player is in the red box
         if (player.getPosition().x >= 8 && player.getPosition().x <= 10 && player.getPosition().z >= 8 && player.getPosition().z <= 10)
             if (player.getFood() <= 95)
@@ -79,7 +71,7 @@ void updatesState(Player &player)
         if (player.getPosition().x >= 8 && player.getPosition().x <= 10 && player.getPosition().z >= -10 && player.getPosition().z <= -8)
             if (player.getWater() <= 95)
                 player.setWater(player.getWater() + 5);
-            else    
+            else
                 player.setWater(100);
 
         //check if player is in the yellow box
@@ -122,23 +114,7 @@ int main()
     Camera camera = createCamera();
     Player player = Player();
 
-    Level level = Level();
-    int roomWidth = 20;
-    int roomLength = 20;
-
-    // Front and back walls
-    Wall wall1((Vector3){0.0f, 1.5f, (float)roomLength / 2.0f}, (Vector3){(float)roomWidth, 3.0f, 1.0f});
-    level.addWall(wall1);
-
-    Wall wall2((Vector3){0.0f, 1.5f, -(float)roomLength / 2.0f}, (Vector3){(float)roomWidth, 3.0f, 1.0f});
-    level.addWall(wall2);
-
-    // Left and right walls
-    Wall wall3((Vector3){(float)roomWidth / 2.0f, 1.5f, 0.0f}, (Vector3){1.0f, 3.0f, (float)roomLength});
-    level.addWall(wall3);
-
-    Wall wall4((Vector3){-(float)roomWidth / 2.0f, 1.5f, 0.0f}, (Vector3){1.0f, 3.0f, (float)roomLength});
-    level.addWall(wall4);
+    Level level = generateRoom();
 
     Vector3 oldPosition;
 
@@ -148,10 +124,10 @@ int main()
         // Updates
         oldPosition = player.getPosition();
         updatesState(player);
-  
+
         // inscre the stress when i work
         if (player.getHp() <= 0)
-            break;// FAIRE UN  GAME OVER QUAND IL A PLUS DE VIE----------------------------------------------- 
+            break;// FAIRE UN  GAME OVER QUAND IL A PLUS DE VIE
         camera.target = oldPosition;
         camera.position = (Vector3){
             static_cast<float>(player.getPosition().x + 0.5),
@@ -171,6 +147,7 @@ int main()
             player.drawModel();
             DrawGrid(20, 1.0f);
             level.drawWalls();
+            level.drawProps();
 
             EndMode3D();
             player.drawUI(camera);

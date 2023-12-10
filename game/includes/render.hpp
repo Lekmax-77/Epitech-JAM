@@ -24,3 +24,15 @@ class Wall {
         Vector3 position;
         Vector3 size;
 };
+
+class Prop {
+    public:
+        Prop(Vector3 position, Vector3 scale, Model model) : position(position), scale(scale), model(model) {}
+        ~Prop() = default;
+
+        Vector3 position;
+        Vector3 rotation_angle;
+        int rotation;
+        Vector3 scale;
+        Model model;
+};
