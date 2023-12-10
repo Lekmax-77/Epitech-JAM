@@ -30,60 +30,61 @@ Camera createCamera(void)
 
 void updatesState(Player &player)
 {
+    int speed = 1;
     if (GetTime() - player.getTick() >= 1) {
         player.setTick(GetTime());
         if (player.getFood() <= 0)
-            player.setHp(player.getHp() - 0.01);
+            player.setHp(player.getHp() - speed);
         else {
-            player.setFood(player.getFood() - 0.01);
+            player.setFood(player.getFood() - speed);
         }
         if (player.getWater() <= 0)
-            player.setHp(player.getHp() - 0.01);
+            player.setHp(player.getHp() - speed);
         else {
-            player.setWater(player.getWater() - 0.01);
+            player.setWater(player.getWater() - speed);
             if (player.getToilet() >= 100)
-                player.setHp(player.getHp() - 0.01);
+                player.setHp(player.getHp() - speed);
             else
-                player.setToilet(player.getToilet() + 1);
+                player.setToilet(player.getToilet() + (speed));
         }
         if (player.getStress() >= 100)
-            player.setHp(player.getHp() - 1);
+            player.setHp(player.getHp() - (speed * 10));
         if (player.getFood() >= 25 && player.getWater() >= 25 && player.getToilet() <= 95)
             if (player.getHp() <= 98)
-                player.setHp(player.getHp() + 2);
+                player.setHp(player.getHp() + (speed * 5));
 
 
         //check if player is in the black box
         if (player.getPosition().x >= -2 && player.getPosition().x <= 2 && player.getPosition().z >= -2 && player.getPosition().z <= 2)
             if (player.getStress() <= 98)
-                player.setStress(player.getStress() + 2);
+                player.setStress(player.getStress() + (speed * 2));
             else
                 player.setStress(100);
 
         //check if player is in the red box
         if (player.getPosition().x >= 8 && player.getPosition().x <= 10 && player.getPosition().z >= 8 && player.getPosition().z <= 10)
             if (player.getFood() <= 95)
-                player.setFood(player.getFood() + 5);
+                player.setFood(player.getFood() + (speed * 5));
             else
                 player.setFood(100);
 
         //check if player is in the blue box
         if (player.getPosition().x >= 8 && player.getPosition().x <= 10 && player.getPosition().z >= -10 && player.getPosition().z <= -8)
             if (player.getWater() <= 95)
-                player.setWater(player.getWater() + 5);
+                player.setWater(player.getWater() + (speed * 5));
             else
                 player.setWater(100);
 
         //check if player is in the yellow box
         if (player.getPosition().x >= -10 && player.getPosition().x <= -8 && player.getPosition().z >= 8 && player.getPosition().z <= 10)
             if (player.getToilet() >= 5)
-                player.setToilet(player.getToilet() - 5);
+                player.setToilet(player.getToilet() - (speed * 5));
             else
                 player.setToilet(0);
 
         if (player.getPosition().x >= -10 && player.getPosition().x <= -8 && player.getPosition().z >= -10 && player.getPosition().z <= -8)
             if (player.getStress() >= 5)
-                player.setStress(player.getStress() - 5);
+                player.setStress(player.getStress() - (speed * 5));
             else
                 player.setStress(0);
 
