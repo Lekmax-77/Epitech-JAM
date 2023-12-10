@@ -148,7 +148,7 @@ int main()
             drawBoxWork(player);
 
             player.drawModel();
-            DrawGrid(20, 1.0f);
+
             level.drawWalls();
             level.drawProps();
 
