@@ -36,32 +36,33 @@ void updatesState(Player &player, Boxes boxes)
     BoundingBox yellowBox = boxes.yellowBox;
     BoundingBox brownBox = boxes.brownBox;
 
+    int speed = 1;
     if (GetTime() - player.getTick() >= 1) {
         player.setTick(GetTime());
         if (player.getFood() <= 0)
-            player.setHp(player.getHp() - 0.01);
+            player.setHp(player.getHp() - speed);
         else {
-            player.setFood(player.getFood() - 0.01);
+            player.setFood(player.getFood() - speed);
         }
         if (player.getWater() <= 0)
-            player.setHp(player.getHp() - 0.01);
+            player.setHp(player.getHp() - speed);
         else {
-            player.setWater(player.getWater() - 0.01);
+            player.setWater(player.getWater() - speed);
             if (player.getToilet() >= 100)
-                player.setHp(player.getHp() - 0.01);
+                player.setHp(player.getHp() - speed);
             else
-                player.setToilet(player.getToilet() + 1);
+                player.setToilet(player.getToilet() + (speed));
         }
         if (player.getStress() >= 100)
-            player.setHp(player.getHp() - 1);
+            player.setHp(player.getHp() - (speed * 10));
         if (player.getFood() >= 25 && player.getWater() >= 25 && player.getToilet() <= 95)
             if (player.getHp() <= 98)
-                player.setHp(player.getHp() + 2);
+                player.setHp(player.getHp() + (speed * 5));
 
         // Check if player is in the black box
         if (CheckCollisionBoxes(player.getBoundingBox(), blackBox)) {
             if (player.getStress() <= 98)
-                player.setStress(player.getStress() + 2);
+                player.setStress(player.getStress() + (speed * 2));
             else
                 player.setStress(100);
         }
@@ -69,7 +70,7 @@ void updatesState(Player &player, Boxes boxes)
         // Check if player is in the red box
         if (CheckCollisionBoxes(player.getBoundingBox(), redBox)) {
             if (player.getFood() <= 95)
-                player.setFood(player.getFood() + 5);
+                player.setFood(player.getFood() + (speed * 5));
             else
                 player.setFood(100);
         }
@@ -77,7 +78,7 @@ void updatesState(Player &player, Boxes boxes)
         // Check if player is in the blue box
         if (CheckCollisionBoxes(player.getBoundingBox(), blueBox)) {
             if (player.getWater() <= 95)
-                player.setWater(player.getWater() + 5);
+                player.setWater(player.getWater() + (speed * 5));
             else
                 player.setWater(100);
         }
@@ -85,12 +86,12 @@ void updatesState(Player &player, Boxes boxes)
         // Check if player is in the yellow box
         if (CheckCollisionBoxes(player.getBoundingBox(), yellowBox)) {
             if (player.getToilet() >= 5)
-                player.setToilet(player.getToilet() - 5);
+                player.setToilet(player.getToilet() - (speed * 5));
             else
                 player.setToilet(0);
 
             if (player.getStress() >= 5)
-                player.setStress(player.getStress() - 5);
+                player.setStress(player.getStress() - (speed * 5));
             else
                 player.setStress(0);
         }
