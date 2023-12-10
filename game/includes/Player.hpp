@@ -47,6 +47,18 @@ public:
 
     bool getIsInvincible() const { return _isInvincible; }
 
+    int getFood() const { return _food; }
+    void setFood(int food) { _food = food; }
+
+    int getWater() const { return _water; }
+    void setWater(int water) { _water = water; }
+
+    int getStress() const { return _stress; }
+    void setStress(int stress) { _stress = stress; }
+
+    int getToilet() const { return _toilet; }
+    void setToilet(int toilet) { _toilet = toilet; }
+
 private:
     Vector3 _position;
     float _speed;
@@ -60,4 +72,9 @@ private:
     int _hp;
     int _damage;
     float _knockback;
+
+    int _food;
+    int _water;
+    int _stress;
+    int _toilet;
 };

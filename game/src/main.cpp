@@ -68,6 +68,7 @@ int main()
             DrawGrid(20, 1.0f);
 
             EndMode3D();
+            player.drawUI(camera);
 
         EndDrawing();
     }
