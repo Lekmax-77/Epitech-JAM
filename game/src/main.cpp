@@ -54,11 +54,60 @@ void updatesState(Player &player)
             else
                 player.setToilet(player.getToilet() + 1);
         }
-
+        if (player.getStress() >= 100)
+            player.setHp(player.getHp() - 1);
         if (player.getFood() >= 25 && player.getWater() >= 25 && player.getToilet() <= 95)
-            player.setHp(player.getHp() + 0.01);
+            if (player.getHp() <= 98)
+                player.setHp(player.getHp() + 2);
+
+        
+        //check if player is in the black box
+        if (player.getPosition().x >= -2 && player.getPosition().x <= 2 && player.getPosition().z >= -2 && player.getPosition().z <= 2)
+            if (player.getStress() <= 98)
+                player.setStress(player.getStress() + 2);
+            else
+                player.setStress(100);
+        
+        //check if player is in the red box
+        if (player.getPosition().x >= 8 && player.getPosition().x <= 10 && player.getPosition().z >= 8 && player.getPosition().z <= 10)
+            if (player.getFood() <= 95)
+                player.setFood(player.getFood() + 5);
+            else
+                player.setFood(100);
+
+        //check if player is in the blue box
+        if (player.getPosition().x >= 8 && player.getPosition().x <= 10 && player.getPosition().z >= -10 && player.getPosition().z <= -8)
+            if (player.getWater() <= 95)
+                player.setWater(player.getWater() + 5);
+            else    
+                player.setWater(100);
+
+        //check if player is in the yellow box
+        if (player.getPosition().x >= -10 && player.getPosition().x <= -8 && player.getPosition().z >= 8 && player.getPosition().z <= 10)
+            if (player.getToilet() >= 5)
+                player.setToilet(player.getToilet() - 5);
+            else
+                player.setToilet(0);
+
+        if (player.getPosition().x >= -10 && player.getPosition().x <= -8 && player.getPosition().z >= -10 && player.getPosition().z <= -8)
+            if (player.getStress() >= 5)
+                player.setStress(player.getStress() - 5);
+            else
+                player.setStress(0);
 
     }
+
+}
+
+
+void drawBoxWork(Player& player)
+{
+    DrawCube({1, 1, 0}, 1, 1, 2, BLACK);
+    DrawCube({9, 0, 9}, 1, 1, 1, RED);
+    DrawCube({9, 0, -9}, 1, 1, 1, BLUE);
+    DrawCube({-9, 0, 9}, 1, 1, 1, YELLOW);
+    DrawCube({-9, 0, -9}, 1, 1, 1, BROWN);
+
 
 }
 
@@ -117,6 +166,7 @@ int main()
         BeginDrawing();
             ClearBackground(RAYWHITE);
             BeginMode3D(camera);
+            drawBoxWork(player);
 
             player.drawModel();
             DrawGrid(20, 1.0f);

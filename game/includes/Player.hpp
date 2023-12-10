@@ -57,9 +57,7 @@ public:
     void setStress(int stress) { _stress = stress; }
 
     int getToilet() const { return _toilet; }
-    void setToilet(int toilet) { 
-        std::cout << " new toilet: " << toilet << std::endl;
-        std::cout << " old toilet: " << _toilet << std::endl;
+    void setToilet(int toilet) {
         _toilet = toilet; 
         }
 
