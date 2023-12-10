@@ -178,11 +178,11 @@ int main()
         };
 
         player.update();
-        // if (level.checkCollisions(player))
-        //     player.setPosition(oldPosition);
+        if (level.checkCollisions(player))
+            player.setPosition(oldPosition);
 
-        // if (level.checkPropCollisions(player))
-        //     player.setPosition(oldPosition);
+        if (level.checkPropCollisions(player))
+            player.setPosition(oldPosition);
 
         BeginDrawing();
             ClearBackground(RAYWHITE);
