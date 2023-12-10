@@ -44,7 +44,7 @@ int main()
     SetTargetFPS(60);
 
     Camera camera = createCamera();
-    camera.projection == CAMERA_ORTHOGRAPHIC;
+    camera.projection = CAMERA_ORTHOGRAPHIC;
     Player player = Player();
 
     Vector3 oldPosition;
@@ -56,7 +56,11 @@ int main()
         oldPosition = player.getPosition();
 
         camera.target = oldPosition;
-        camera.position = (Vector3){player.getPosition().x + 0.5, player.getPosition().y + 15, player.getPosition().z};
+        camera.position = (Vector3){
+    static_cast<float>(player.getPosition().x + 0.5), 
+    static_cast<float>(player.getPosition().y + 15), 
+    static_cast<float>(player.getPosition().z)
+};
 
         player.update();
 
