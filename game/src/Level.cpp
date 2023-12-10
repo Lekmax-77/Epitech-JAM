@@ -92,6 +92,13 @@ Level generateRoom(void)
     prop1.rotation_angle = (Vector3){1, 0, 0};
     prop1.rotation = -90;
     level.addProp(prop1);
+    
+    Model coffe = LoadModel("assets/coffe_machine.glb");
+    Prop coffe_prop((Vector3){2.0f, 2.0f, -8.0f}, (Vector3){1.0f, 1.0f, 1.0f}, coffe);
+    
+    // coffe_prop.rotation_angle = (Vector3){1, 0, 0};
+    coffe_prop.rotation_angle = (Vector3){0, 1, 1}; 
+    level.addProp(coffe_prop);
 
     Model model2 = LoadModel("assets/models/mess_office.glb");
     Prop prop2((Vector3){3.0f, 0.0f, 3.0f}, (Vector3){10.0f, 10.0f, 10.0f}, model2);
