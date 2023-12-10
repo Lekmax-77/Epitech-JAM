@@ -33,8 +33,10 @@ void Level::drawEnemiesUI(Camera camera)
 
 void Level::drawWalls()
 {
-    for (size_t i = 0; i < _walls.size(); i++)
-        DrawCubeV(_walls[i].position, _walls[i].size, BLACK);
+    for (size_t i = 0; i < _walls.size(); i++) {
+        DrawCubeV(_walls[i].position, _walls[i].size, GRAY);
+        DrawCubeWiresV(_walls[i].position, _walls[i].size, BLACK);
+    }
 }
 
 bool Level::checkCollisions(Player player)

@@ -47,6 +47,24 @@ int main()
     camera.projection == CAMERA_ORTHOGRAPHIC;
     Player player = Player();
 
+    Level level = Level();
+    int roomWidth = 20;
+    int roomLength = 20;
+
+    // Front and back walls
+    Wall wall1((Vector3){0.0f, 1.5f, (float)roomLength / 2.0f}, (Vector3){(float)roomWidth, 3.0f, 1.0f});
+    level.addWall(wall1);
+
+    Wall wall2((Vector3){0.0f, 1.5f, -(float)roomLength / 2.0f}, (Vector3){(float)roomWidth, 3.0f, 1.0f});
+    level.addWall(wall2);
+
+    // Left and right walls
+    Wall wall3((Vector3){(float)roomWidth / 2.0f, 1.5f, 0.0f}, (Vector3){1.0f, 3.0f, (float)roomLength});
+    level.addWall(wall3);
+
+    Wall wall4((Vector3){-(float)roomWidth / 2.0f, 1.5f, 0.0f}, (Vector3){1.0f, 3.0f, (float)roomLength});
+    level.addWall(wall4);
+
     Vector3 oldPosition;
 
     // Main game loop
@@ -59,6 +77,8 @@ int main()
         camera.position = (Vector3){player.getPosition().x + 0.5, player.getPosition().y + 15, player.getPosition().z};
 
         player.update();
+        if (level.checkCollisions(player))
+            player.setPosition(oldPosition);
 
         BeginDrawing();
             ClearBackground(RAYWHITE);
@@ -66,6 +86,7 @@ int main()
 
             player.drawModel();
             DrawGrid(20, 1.0f);
+            level.drawWalls();
 
             EndMode3D();
             player.drawUI(camera);

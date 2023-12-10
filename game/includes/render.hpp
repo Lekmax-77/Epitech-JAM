@@ -16,7 +16,11 @@
 
 #define EXIT_ERROR 84
 
-struct Wall {
-    Vector3 position;
-    Vector3 size;
+class Wall {
+    public:
+        Wall(Vector3 position, Vector3 size) : position(position), size(size) {}
+        ~Wall() = default;
+
+        Vector3 position;
+        Vector3 size;
 };
