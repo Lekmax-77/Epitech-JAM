@@ -65,29 +65,29 @@ void Player::drawUI(Camera camera)
     int y = 30;
 
     // Draw the player's health bar
-    DrawRectangle(x, y, 200, 20, BLACK);
+    DrawRectangle(x, y, 200, 20, WHITE);
     DrawRectangle(x, y, _hp * 2, 20, RED);
-    DrawRectangleLines(x, y, 200, 20, WHITE);
+    DrawRectangleLines(x, y, 200, 20, BLACK);
 
     // Draw the player's food bar
-    DrawRectangle(x, y + 50, 200, 20, BLACK);
+    DrawRectangle(x, y + 50, 200, 20, WHITE);
     DrawRectangle(x, y + 50, _food * 2, 20, GREEN);
-    DrawRectangleLines(x, y + 25, 200, 20, WHITE);
+    DrawRectangleLines(x, y + 50, 200, 20, BLACK);
 
     // Draw the player's water bar
-    DrawRectangle(x, y + 100, 200, 20, BLACK);
+    DrawRectangle(x, y + 100, 200, 20, WHITE);
     DrawRectangle(x, y + 100, _water * 2, 20, BLUE);
-    DrawRectangleLines(x, y + 50, 200, 20, WHITE);
+    DrawRectangleLines(x, y + 100, 200, 20, BLACK);
 
     // Draw the player's stress bar
-    DrawRectangle(x, y + 150, 200, 20, BLACK);
+    DrawRectangle(x, y + 150, 200, 20, WHITE);
     DrawRectangle(x, y + 150, _stress * 2, 20, YELLOW);
-    DrawRectangleLines(x, y + 75, 200, 20, WHITE);
+    DrawRectangleLines(x, y + 150, 200, 20, BLACK);
 
     // Draw the player's toilet bar
-    DrawRectangle(x, y + 200, 200, 20, BLACK);
+    DrawRectangle(x, y + 200, 200, 20, WHITE);
     DrawRectangle(x, y + 200, _toilet * 2, 20, BROWN);
-    DrawRectangleLines(x, y + 100, 200, 20, WHITE);
+    DrawRectangleLines(x, y + 200, 200, 20, BLACK);
 
     // Draw Text
     DrawText("Health", x, y - 20, 20, BLACK);
