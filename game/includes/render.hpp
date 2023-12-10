@@ -31,8 +31,8 @@ class Prop {
         ~Prop() = default;
 
         Vector3 position;
-        Vector3 rotation_angle;
-        int rotation;
+        Vector3 rotation_angle = (Vector3){0, 0, 0};
+        int rotation = 0;
         Vector3 scale;
         Model model;
 };

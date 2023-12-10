@@ -113,8 +113,27 @@ Level generateRoom(void)
     level.addProp(coffe_prop);
 
     Model model2 = LoadModel("assets/models/mess_office.glb");
-    Prop prop2((Vector3){3.0f, 0.0f, 3.0f}, (Vector3){10.0f, 10.0f, 10.0f}, model2);
+    Prop prop2((Vector3){10.0f, 0.0f, 0.0f}, (Vector3){10.0f, 10.0f, 10.0f}, model2);
     level.addProp(prop2);
+    Prop prop3((Vector3){10.0f, 0.0f, -4.0f}, (Vector3){10.0f, 10.0f, 10.0f}, model2);
+    level.addProp(prop3);
+    Prop prop4((Vector3){10.0f, 0.0f, -8.0f}, (Vector3){10.0f, 10.0f, 10.0f}, model2);
+    level.addProp(prop4);
+    Prop prop5((Vector3){10.0f, 0.0f, -12.0f}, (Vector3){10.0f, 10.0f, 10.0f}, model2);
+    level.addProp(prop5);
+
+    Prop prop6((Vector3){20.0f, 0.0f, 0.0f}, (Vector3){10.0f, 10.0f, 10.0f}, model2);
+    prop6.rotation_angle = (Vector3){0, 1, 0};
+    prop6.rotation = 180;
+    level.addProp(prop6);
+    Prop prop7((Vector3){17.0f, 0.0f, -5.0f}, (Vector3){10.0f, 10.0f, 10.0f}, model2);
+    prop7.rotation_angle = (Vector3){0, 1, 0};
+    prop7.rotation = 80;
+    level.addProp(prop7);
+
+    Model toilet = LoadModel("assets/models/Toilet.glb");
+    Prop toilet_prop((Vector3){32, 0, -9}, (Vector3){100.0f, 100.0f, 100.0f}, toilet);
+    level.addProp(toilet_prop);
 
     return level;
 }
