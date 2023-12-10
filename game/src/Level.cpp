@@ -135,5 +135,9 @@ Level generateRoom(void)
     Prop toilet_prop((Vector3){32, 0, -9}, (Vector3){100.0f, 100.0f, 100.0f}, toilet);
     level.addProp(toilet_prop);
 
+    Model water = LoadModel("assets/models/Water.glb");
+    Prop water_prop((Vector3){1.5, 0, -27}, (Vector3){1000.0f, 1000.0f, 1000.0f}, water);
+    level.addProp(water_prop);
+
     return level;
 }
