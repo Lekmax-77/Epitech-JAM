@@ -142,6 +142,9 @@ int main()
 
     Vector3 oldPosition;
 
+    Menu menu;
+    menu.loop();
+
     // Main game loop
     while (!WindowShouldClose())
     {

@@ -29,7 +29,8 @@ Menu::Menu()
         WHITE,
         20
     ),
-    _background_texture(LoadTexture(BACKGROUND_IMAGE_PATH))
+    _background_texture(LoadTexture(BACKGROUND_IMAGE_PATH)),
+    _jo_texture(LoadTexture("assets/jo.png"))
 {
 }
 
@@ -41,6 +42,8 @@ Menu::~Menu()
 void Menu::loop()
 {
     while (!WindowShouldClose()) {
+        //clear black
+        ClearBackground(BLACK);
         Vector2 background_position = {
             static_cast<float>(GetMouseX() * COEF - 25),
             static_cast<float>(GetMouseY() * COEF - 25)
@@ -84,11 +87,10 @@ void Menu::loop()
         _quit_button.position = quit_button_position;
 
         BeginDrawing();
-        DrawTextureV(
-            _background_texture,
-            background_position,
-            WHITE
-        );
+
+        DrawTextureEx(_background_texture, background_position, 0, 0.35, WHITE);
+
+        DrawTextureEx(_jo_texture, {350, 200}, -15, 1, WHITE);
         _play_button.draw();
         _quit_button.draw();
         EndDrawing();

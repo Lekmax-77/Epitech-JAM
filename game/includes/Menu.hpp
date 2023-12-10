@@ -24,5 +24,6 @@ class Menu {
         Button _play_button;
         Button _quit_button;
         Texture2D _background_texture;
+        Texture2D _jo_texture;
 };
 
